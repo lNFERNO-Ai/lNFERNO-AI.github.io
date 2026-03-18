@@ -13,6 +13,15 @@ extensionLimitError.style.fontFamily = "Courier New";
 if (localStorage.getItem("extension4") === null) {} else {
   document.body.appendChild(extensionLimitError);
   setTimeout(function() {
-    extensionLimit.remove();
+    extensionLimitError.remove();
   }, 3000);
+}
+if (extension1 === null) {} else {
+  eval(extension1.script);
+}
+if (extension2 === null) {} else {
+  eval(extension2.script);
+}
+if (extension3 === null) {} else {
+  eval(extension3.script);
 }
