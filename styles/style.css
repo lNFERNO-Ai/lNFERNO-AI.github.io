@@ -1,75 +1,87 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
+body, html { 
+    margin: 0; 
+    padding: 0; 
+    width: 100%; 
+    height: 100%; 
     background: #020202; 
-    overflow: hidden;
+    overflow: hidden; 
+    font-family: sans-serif;
 }
 
-#app-wrapper {
-    width: 100%;
-    height: 100%;
-    transition: transform 0.05s ease;
+#app-wrapper { 
+    width: 100%; 
+    height: 100%; 
+    transition: transform 0.05s ease; 
 }
 
-.fire-bg-layer {
-    position: fixed;
-    bottom: -100px;
-    left: -100px;
-    width: 1400px;
-    height: 1400px;
-    z-index: -1;
+.fire-bg-layer { 
+    position: fixed; 
+    bottom: -100px; 
+    left: -100px; 
+    width: 1400px; 
+    height: 1400px; 
+    z-index: -1; 
 }
 
-.smoke-overlay {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 15% 85%, transparent 5%, rgba(0,0,0,0.92) 75%);
-    pointer-events: none;
+.smoke-overlay { 
+    position: absolute; 
+    inset: 0; 
+    background: radial-gradient(circle at 15% 85%, transparent 10%, rgba(0,0,0,0.85) 80%); 
+    pointer-events: none; 
 }
 
-.content-ui {
+.content-ui { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    height: 100vh; 
+    filter: url(#heat); 
+    position: relative;
+    z-index: 10;
+}
+
+.header-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100vh;
-    filter: url(#heat);
+    margin-bottom: 40px;
 }
 
-.fire-text {
-    font-family: 'FlameInferno', sans-serif;
-    font-size: 8rem;
-    color: #ff3300;
-    margin-bottom: 30px;
-    text-shadow: 0 0 20px #ff0000;
+.fire-text { 
+    font-size: 8rem; 
+    color: #ff4500; 
+    margin: 10px 0; 
+    text-shadow: 0 0 15px rgba(255, 50, 0, 0.6), 0 0 30px rgba(255, 0, 0, 0.4); 
+    text-transform: uppercase;
+    letter-spacing: 5px;
 }
 
-.button-group {
-    display: flex;
-    gap: 20px;
+.button-group { 
+    display: flex; 
+    gap: 25px; 
 }
 
-.menu-btn {
-    font-family: 'FlameInferno', sans-serif;
-    /* Deep Sea Blue Styles */
-    background: #001a33; 
-    border: 2px solid #004080;
-    color: #0080ff;
-    /* Tall, Rounded, Rectangular */
-    padding: 25px 60px;
-    border-radius: 50px;
-    font-size: 1.4rem;
+.menu-btn { 
+    padding: 18px 45px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffcc00;
+    background: rgba(255, 51, 0, 0.08);
+    border: 2px solid #ff3300;
     cursor: pointer;
-    letter-spacing: 2px;
     transition: all 0.2s ease;
     text-transform: uppercase;
+    outline: none;
 }
 
-.menu-btn.active-glow {
+.menu-btn:hover {
+    background: rgba(255, 51, 0, 0.3);
+    box-shadow: 0 0 20px #ff3300;
+}
+
+.active-glow {
+    box-shadow: 0 0 40px #ff3300, inset 0 0 15px #ff3300;
+    border-color: #ffcc00;
     color: #ffffff;
-    border-color: #00d9ff;
-    box-shadow: 0 0 30px rgba(0, 217, 255, 0.5);
-    transform: scale(1.05);
 }
