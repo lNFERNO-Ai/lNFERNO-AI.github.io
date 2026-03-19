@@ -1,1 +1,1 @@
-# Flame.ai
+# Inferno.ai
