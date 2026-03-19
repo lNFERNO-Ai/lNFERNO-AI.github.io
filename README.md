@@ -1,1 +1,1 @@
-# Inferno.ai
+# INFERNO.ai
