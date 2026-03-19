@@ -6,83 +6,17 @@
     <title>Upgrade Your Plan</title>
     <link rel="stylesheet" href="../styles/style.css">
     <style>
-        .pricing-container {
-            display: flex;
-            gap: 40px;
-            justify-content: center;
-            align-items: stretch;
-            width: 90%;
-            max-width: 1200px;
-        }
-
-        .plan-card {
-            flex: 1;
-            background: rgba(0, 26, 51, 0.85);
-            border: 2px solid #004080;
-            border-radius: 20px;
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.3s ease;
-        }
-
-        .plan-card:hover {
-            border-color: #00d9ff;
-            box-shadow: 0 0 20px rgba(0, 217, 255, 0.2);
-        }
-
-        .plan-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .plan-title {
-            font-family: 'FlameInferno', sans-serif;
-            font-size: 3rem;
-            color: #ff3300;
-            text-shadow: 0 0 15px #ff0000;
-            margin: 0;
-        }
-
-        .plan-price {
-            font-size: 2rem;
-            color: #0080ff;
-            margin: 10px 0;
-            font-weight: bold;
-        }
-
-        .feature-list {
-            list-style: none;
-            padding: 0;
-            margin: 30px 0;
-            flex-grow: 1;
-        }
-
-        .feature-item {
-            color: #ffffff;
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-            padding-left: 30px;
-            position: relative;
-            line-height: 1.4;
-        }
-
-        .feature-item::before {
-            content: '⚡';
-            position: absolute;
-            left: 0;
-            color: #00d9ff;
-        }
-
-        .cta-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .menu-btn {
-            width: 100%;
-        }
+        .pricing-container { display: flex; gap: 40px; justify-content: center; align-items: stretch; width: 90%; max-width: 1200px; }
+        .plan-card { flex: 1; background: rgba(0, 26, 51, 0.85); border: 2px solid #004080; border-radius: 20px; padding: 40px; display: flex; flex-direction: column; transition: all 0.3s ease; }
+        .plan-card:hover { border-color: #00d9ff; box-shadow: 0 0 20px rgba(0, 217, 255, 0.2); }
+        .plan-header { text-align: center; margin-bottom: 20px; }
+        .plan-title { font-family: 'FlameInferno', sans-serif; font-size: 3rem; color: #ff3300; text-shadow: 0 0 15px #ff0000; margin: 0; }
+        .plan-price { font-size: 2rem; color: #0080ff; margin: 10px 0; font-weight: bold; }
+        .feature-list { list-style: none; padding: 0; margin: 30px 0; flex-grow: 1; }
+        .feature-item { color: #ffffff; font-size: 1.1rem; margin-bottom: 15px; padding-left: 30px; position: relative; line-height: 1.4; }
+        .feature-item::before { content: '⚡'; position: absolute; left: 0; color: #00d9ff; }
+        .cta-container { display: flex; justify-content: center; margin-top: 20px; }
+        .menu-btn { width: 100%; }
     </style>
 </head>
 <body>
@@ -91,65 +25,47 @@
             <canvas id="fireCanvas"></canvas>
             <div class="smoke-overlay"></div>
         </div>
-
         <div class="content-ui">
             <div class="pricing-container">
-                
                 <div class="plan-card">
                     <div class="plan-header">
                         <h2 class="plan-title">PRO PLAN</h2>
                         <div class="plan-price">$7 / MO</div>
                     </div>
                     <ul class="feature-list">
-                        <li class="feature-item">Enhanced Memory (Large Context)</li>
+                        <li class="feature-item">Enhanced Memory</li>
                         <li class="feature-item">High-Speed Local Inference</li>
                         <li class="feature-item">GPU Acceleration: Level 5</li>
                         <li class="feature-item">File Uploads: Up to 500MB</li>
                         <li class="feature-item">Direct GitHub Integration</li>
-                        <li class="feature-item">Unlimited Advanced Data Analysis</li>
+                        <li class="feature-item">Advanced Data Analysis</li>
                     </ul>
                     <div class="cta-container">
-                        <button class="menu-btn glow-target" onclick="location.href='buy_pro.html'">
-                            UPGRADE PRO
-                        </button>
+                        <button class="menu-btn glow-target" onclick="location.href='buy_pro.html'">UPGRADE PRO</button>
                     </div>
                 </div>
-
                 <div class="plan-card" style="border-color: #0080ff;">
                     <div class="plan-header">
                         <h2 class="plan-title">ENTERPRISE MODE</h2>
                         <div class="plan-price">$15 / MO</div>
                     </div>
                     <ul class="feature-list">
-                        <li class="feature-item"><b>Everything in Pro Plan</b></li>
+                        <li class="feature-item">Everything in Pro Plan</li>
                         <li class="feature-item">GPU Acceleration: Level 8 (Max)</li>
                         <li class="feature-item">File Uploads: Up to 1GB</li>
                         <li class="feature-item">Full VS Code Extension Support</li>
-                        <li class="feature-item">Super-Smart Model (Non-Beta)</li>
+                        <li class="feature-item">Super-Smart Model</li>
                         <li class="feature-item">Video & Multimedia Analysis</li>
                         <li class="feature-item">Read Entire Repositories</li>
-                        <li class="feature-item">Python Large File Generation Tool</li>
                     </ul>
                     <div class="cta-container">
-                        <button class="menu-btn glow-target active-glow" onclick="location.href='buy_enterprise.html'">
-                            GO ENTERPRISE
-                        </button>
+                        <button class="menu-btn glow-target active-glow" onclick="location.href='buy_enterprise.html'">GO ENTERPRISE</button>
                     </div>
                 </div>
-
             </div>
         </div>
-
-        <svg style="display: none;">
-            <defs>
-                <filter id="heat">
-                    <feTurbulence type="fractalNoise" baseFrequency="0.01 0.05" numOctaves="2" result="noise" />
-                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" />
-                </filter>
-            </defs>
-        </svg>
+        <svg style="display: none;"><defs><filter id="heat"><feTurbulence type="fractalNoise" baseFrequency="0.01 0.05" numOctaves="2" result="noise" /><feDisplacementMap in="SourceGraphic" in2="noise" scale="5" /></filter></defs></svg>
     </div>
-
     <script src="../styles/flame_atmosphere.js"></script>
 </body>
 </html>
