@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'FlameInferno';
-    src: url('assets/fonts/Flame_Inferno.ttf');
+    src: url('../assets/fonts/Flame_Inferno.ttf');
 }
 
 body, html {
@@ -44,27 +44,37 @@ body, html {
 }
 
 .fire-text {
-    font-family: 'FireInferno', sans-serif;
+    font-family: 'FlameInferno', sans-serif;
     font-size: 8rem;
     color: #ff3300;
     margin-bottom: 30px;
     text-shadow: 0 0 20px #ff0000;
 }
 
+.button-group {
+    display: flex;
+    gap: 20px;
+}
+
 .menu-btn {
-    font-family: 'FireInferno', sans-serif;
-    background: rgba(10, 10, 10, 0.9);
-    border: 1px solid #222;
-    color: #444;
-    padding: 18px 50px;
-    margin: 10px;
+    font-family: 'FlameInferno', sans-serif;
+    /* Deep Sea Blue Styles */
+    background: #001a33; 
+    border: 2px solid #004080;
+    color: #0080ff;
+    /* Tall, Rounded, Rectangular */
+    padding: 25px 60px;
+    border-radius: 50px;
     font-size: 1.4rem;
     cursor: pointer;
     letter-spacing: 2px;
-    transition: all 0.15s 
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+}
+
 .menu-btn.active-glow {
-    color: #ff9900;
-    border-color: #ff4400;
-    box-shadow: 0 0 25px rgba(255, 68, 0, 0.4);
-    transform: scale(1.02);
+    color: #ffffff;
+    border-color: #00d9ff;
+    box-shadow: 0 0 30px rgba(0, 217, 255, 0.5);
+    transform: scale(1.05);
 }
