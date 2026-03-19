@@ -14,8 +14,8 @@
         </div>
 
         <div class="content-ui">
-            <header style="text-align: center;">
-                <img src="icon.png" width="150" height="150">
+            <header class="header-container">
+                <img src="icon.png" width="150" height="150" alt="Logo">
                 <h1 class="fire-text">Inferno AI</h1>
             </header>
 
@@ -28,11 +28,11 @@
     </div>
 
     <svg width="0" height="0" style="position:absolute;">
-        <filter id="heat">
+        <filter id="heat" x="-20%" y="-20%" width="140%" height="140%">
             <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" seed="1">
-                <animate attributeName="seed" from="1" to="100" dur="8s" repeatCount="indefinite" />
+                <animate attributeName="seed" from="1" to="100" dur="10s" repeatCount="indefinite" />
             </feTurbulence>
-            <feDisplacementMap in="SourceGraphic" scale="20" />
+            <feDisplacementMap in="SourceGraphic" scale="15" />
         </filter>
     </svg>
 
