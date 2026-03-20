@@ -1,68 +1,42 @@
-import os
-import sys
-import subprocess
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-CONFIG_DIR = os.path.join(BASE_DIR, "..", ".config")
-MODELS_DIR = os.path.join(BASE_DIR, "..", "models")
-STATIC_DIR = os.path.join(BASE_DIR, "..", "static")
-
-for folder in [CONFIG_DIR, MODELS_DIR, STATIC_DIR]:
-    if not os.path.exists(folder):
-        os.makedirs(folder)
-
-sys.path.append(CONFIG_DIR)
-
-def bootstrap():
-    if not os.listdir(CONFIG_DIR):
-        subprocess.check_call([
-            sys.executable, "-m", "pip", 
-            "install", 
-            "--target", CONFIG_DIR, 
-            "fastapi", "uvicorn", "llama-cpp-python", "pydantic"
-        ])
-
-bootstrap()
-
 from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel
-from llama_cpp import Llama
+from fastapi.middleware.cors import CORSMiddleware
+from systems.platform_check import get_current_platform
+from payment.ms_store import router as ms_router
+from payment.google_play import router as google_router
 import uvicorn
 
 app = FastAPI()
 
-model_files = [f for f in os.listdir(MODELS_DIR) if f.endswith(".gguf")]
-if model_files:
-    model_path = os.path.join(MODELS_DIR, model_files[0])
-    llm = Llama(model_path=model_path, n_ctx=2048)
-else:
-    llm = None
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-class ChatRequest(BaseModel):
-    prompt: str
+# Include both store modules
+app.include_router(ms_router, prefix="/api/v1/ms")
+app.include_router(google_router, prefix="/api/v1/google")
 
-@app.post("/api/chat")
-async def chat(request: ChatRequest):
-    if not llm:
-        return {"error": "No .gguf model found in models directory"}
+@app.post("/api/v1/buy")
+async def universal_buy(plan_type: str, token: str = None):
+    platform = get_current_platform()
     
-    output = llm(
-        f"User: {request.prompt}\nAI:", 
-        max_tokens=128, 
-        stop=["User:", "\n"]
-    )
-    return {"answer": output["choices"][0]["text"]}
-
-@app.get("/api/status")
-async def status():
-    return {
-        "status": "online",
-        "model_loaded": llm is not None,
-        "config_path": CONFIG_DIR
-    }
-
-app.mount("/", StaticFiles(directory=STATIC_DIR, html=True), name="static")
+    if platform == "microsoft_store":
+        from payment.ms_store import process_ms_purchase
+        return await process_ms_purchase(plan_type)
+        
+    elif platform == "google_play":
+        from payment.google_play import verify_google_purchase
+        if not token:
+            raise HTTPException(status_code=400, detail="Missing Google Token")
+        return await verify_google_purchase(token, plan_type)
+        
+    else:
+        # Dev bypass for local testing
+        from payment.ms_store import update_config
+        update_config(plan_type)
+        return {"status": "success", "mode": "dev_bypass"}
 
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=8000)
